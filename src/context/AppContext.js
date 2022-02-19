@@ -1,7 +1,15 @@
 import React, { useReducer } from "react";
 
-import { addNewProjectReducer } from "./reducers";
-import { ADD_PROJECT } from "./constants";
+import {
+  addNewProjectReducer,
+  updateSndLvlMatrixReducer,
+  updateThrdLvlMatrixReducer,
+} from "./reducers";
+import {
+  ADD_PROJECT,
+  UPDATE_SND_LVL_MATRIX,
+  UPDATE_THRD_LVL_MATRIX,
+} from "./constants";
 
 const AppContext = React.createContext();
 
@@ -11,6 +19,10 @@ const AppProvider = ({ children }) => {
       switch (newData.action) {
         case ADD_PROJECT:
           return addNewProjectReducer(state, newData);
+        case UPDATE_SND_LVL_MATRIX:
+          return updateSndLvlMatrixReducer(state, newData);
+        case UPDATE_THRD_LVL_MATRIX:
+          return updateThrdLvlMatrixReducer(state, newData);
         default:
           throw new Error("Unexpected action!");
       }

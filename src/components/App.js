@@ -12,7 +12,7 @@ function App() {
   return (
     <Box>
       <Navbar />
-      <Box padding="15px">
+      <Box padding="30px">
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/projects/:projectId" element={<ProjectPage />} />

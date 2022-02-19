@@ -1,6 +1,6 @@
 import React from "react";
 
-import Body from "./Body/Body";
+import Body from "./components/Body/Body";
 
 const MainPage = () => {
   return (

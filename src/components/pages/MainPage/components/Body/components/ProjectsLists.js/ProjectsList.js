@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 
 import { Link } from "react-router-dom";
 
-import { AppContext } from "../../../../../../context/AppContext";
-import { getProjects } from "../../../../../../context/selectors";
+import { AppContext } from "../../../../../../../context/AppContext";
+import { getProjects } from "../../../../../../../context/selectors";
 
 import Box from "@mui/material/Box";
 

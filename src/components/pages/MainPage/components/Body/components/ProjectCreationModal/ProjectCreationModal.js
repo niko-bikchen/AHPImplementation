@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 
-import { AppContext } from "../../../../../../context/AppContext";
-import { addNewProject } from "../../../../../../context/actions";
+import { AppContext } from "../../../../../../../context/AppContext";
+import { addNewProject } from "../../../../../../../context/actions";
 
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 
@@ -24,6 +24,7 @@ const ProjectCreationModal = () => {
 
   const [open, setOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
+  const [targetName, setTargetName] = useState("");
   const [projectCriteriaNumber, setProjectCriteriaNumber] = useState(1);
   const [projectAlternativesNumber, setProjectAlternativesNumber] = useState(1);
 
@@ -33,12 +34,15 @@ const ProjectCreationModal = () => {
 
   const handleClose = () => {
     setOpen(false);
+    setTargetName("");
     setProjectName("");
     setProjectCriteriaNumber(1);
     setProjectAlternativesNumber(1);
   };
 
   const handleNameChange = (event) => setProjectName(event.target.value);
+
+  const handleTargetChange = (event) => setTargetName(event.target.value);
 
   const handleValueChange = (event, newValue) =>
     event.target.name === "criterianum"
@@ -49,6 +53,7 @@ const ProjectCreationModal = () => {
     changeAppContext(
       addNewProject({
         name: projectName,
+        target: targetName,
         criteriaNum: projectCriteriaNumber,
         alternativesNum: projectAlternativesNumber,
       })
@@ -74,6 +79,7 @@ const ProjectCreationModal = () => {
             To create a new project please fill in the fields below.
           </DialogContentText>
           <TextField
+            autoComplete="new-password"
             autoFocus
             margin="dense"
             id="name"
@@ -85,10 +91,23 @@ const ProjectCreationModal = () => {
             value={projectName}
           />
           <Box marginTop="15px">
+            <TextField
+              autoComplete="new-password"
+              margin="dense"
+              id="target"
+              label="Target Name"
+              type="text"
+              fullWidth
+              variant="standard"
+              onChange={handleTargetChange}
+              value={targetName}
+            />
+          </Box>
+          <Box marginTop="15px">
             <Typography>Number of criteria</Typography>
             <Slider
-              min={1}
-              max={20}
+              min={2}
+              max={10}
               step={1}
               defaultValue={1}
               valueLabelDisplay="auto"
@@ -105,8 +124,8 @@ const ProjectCreationModal = () => {
           <Box marginTop="15px">
             <Typography>Number of alternatives</Typography>
             <Slider
-              min={1}
-              max={20}
+              min={2}
+              max={10}
               step={1}
               defaultValue={1}
               valueLabelDisplay="auto"
