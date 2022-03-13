@@ -15,7 +15,6 @@ const ProjectResults = ({
   moveToPrevStep,
 }) => {
   const alternatives = projectData.alternatives;
-  const criterias = projectData.criterias;
 
   const secondLevelMatrix = projectData.secondLevelMatrix;
   const thirdLevelMatrices = projectData.thirdLevelMatrices;
