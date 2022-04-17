@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Box from "@mui/material/Box";
 
@@ -29,17 +29,10 @@ const ProjectSndLvlMatrix = ({
       return newMatrix;
     });
 
-  const moveToNextStepWrapper = () => {
+  useEffect(() => {
     onUpdateSndLvlMatrix(secondLvlMatrix);
-    moveToNextStep();
-  };
-  const moveToPrevStepWrapper = () => {
-    onUpdateSndLvlMatrix(secondLvlMatrix);
-    moveToPrevStep();
-  };
-  const goToMainMenu = () => {
-    onUpdateSndLvlMatrix(secondLvlMatrix);
-  };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [secondLvlMatrix]);
 
   return (
     <Box>
@@ -57,9 +50,8 @@ const ProjectSndLvlMatrix = ({
       <ProjectNavigation
         marginTop="30px"
         pageStep={pageStep}
-        moveToNextStep={moveToNextStepWrapper}
-        moveToPrevStep={moveToPrevStepWrapper}
-        goToMainMenu={goToMainMenu}
+        moveToNextStep={moveToNextStep}
+        moveToPrevStep={moveToPrevStep}
       />
     </Box>
   );

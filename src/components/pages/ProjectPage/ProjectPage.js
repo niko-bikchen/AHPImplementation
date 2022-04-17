@@ -6,6 +6,7 @@ import { getProject } from "../../../context/selectors";
 import {
   updateSndLvlMatrix,
   updateThrdLvlMatrix,
+  updateBlockName,
 } from "../../../context/actions";
 
 import Box from "@mui/material/Box";
@@ -36,6 +37,9 @@ const ProjectPage = () => {
   const onUpdateThrdLvlMatrix = (newMatrices) =>
     changeAppContext(updateThrdLvlMatrix(newMatrices, projectId));
 
+  const updateOverviewBlockName = (newName, projectId, blockType, blockId) =>
+    changeAppContext(updateBlockName(newName, projectId, blockType, blockId));
+
   if (
     projectData &&
     Object.keys(projectData).length === 0 &&
@@ -52,6 +56,7 @@ const ProjectPage = () => {
           pageStep={pageStep}
           moveToNextStep={moveToNextStep}
           moveToPrevStep={moveToPrevStep}
+          updateOverviewBlockName={updateOverviewBlockName}
         />
       )}
       {pageStep === 1 && (

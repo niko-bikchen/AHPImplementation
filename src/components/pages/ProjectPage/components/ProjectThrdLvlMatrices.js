@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import uniqid from "uniqid";
 
 import ProjectNavigation from "./ProjectNavigation";
@@ -45,17 +45,10 @@ const ProjectThrdLvlMatrices = ({
       return newMatrices;
     });
 
-  const moveToNextStepWrapper = () => {
+  useEffect(() => {
     onUpdateThrdLvlMatrix(thirdLevelMatrices);
-    moveToNextStep();
-  };
-  const moveToPrevStepWrapper = () => {
-    onUpdateThrdLvlMatrix(thirdLevelMatrices);
-    moveToPrevStep();
-  };
-  const goToMainMenu = () => {
-    onUpdateThrdLvlMatrix(thirdLevelMatrices);
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [thirdLevelMatrices]);
 
   return (
     <Box>
@@ -76,9 +69,8 @@ const ProjectThrdLvlMatrices = ({
       <ProjectNavigation
         marginTop="30px"
         pageStep={pageStep}
-        moveToNextStep={moveToNextStepWrapper}
-        moveToPrevStep={moveToPrevStepWrapper}
-        goToMainMenu={goToMainMenu}
+        moveToNextStep={moveToNextStep}
+        moveToPrevStep={moveToPrevStep}
       />
     </Box>
   );

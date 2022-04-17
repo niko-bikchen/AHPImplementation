@@ -46,6 +46,19 @@ export const addNewProjectReducer = (state, newData) => {
   };
 };
 
+export const deleteProjectReducer = (state, newData) => {
+  const projectId = newData.payload;
+
+  const newProjects = state.projects.filter(
+    (project) => project.id !== projectId
+  );
+
+  return {
+    ...state,
+    projects: newProjects,
+  };
+};
+
 export const updateSndLvlMatrixReducer = (state, newData) => {
   const { newMatrix, projectId } = newData.payload;
 
@@ -72,6 +85,28 @@ export const updateThrdLvlMatrixReducer = (state, newData) => {
       ? {
           ...project,
           thirdLevelMatrices: [...newMatrices],
+        }
+      : project
+  );
+
+  return {
+    ...state,
+    projects: newProjects,
+  };
+};
+
+export const updateBlockNameReducer = (state, newData) => {
+  const { newName, projectId, blockType, blockId } = newData.payload;
+
+  console.log(newData);
+
+  const newProjects = state.projects.map((project) =>
+    project.id === projectId
+      ? {
+          ...project,
+          [blockType]: project[blockType].map((block) =>
+            block.id === blockId ? { ...block, name: newName } : block
+          ),
         }
       : project
   );
